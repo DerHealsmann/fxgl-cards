@@ -17,7 +17,7 @@ public class Main extends GameApplication {
 
         spawn(SpawnKeys.BACKGROUND);
         var cardData = new SpawnData(getAppWidth() / 2d, getAppHeight() / 2d);
-        cardData.put("model", new CardModel(CardModel.Rank.FOUR, CardModel.Suit.DIAMONDS));
+        cardData.put(CardModel.MODEL, new CardModel(CardModel.Rank.FOUR, CardModel.Suit.DIAMONDS));
 
         card = spawn(SpawnKeys.CARD, cardData);
     }

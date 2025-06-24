@@ -1,4 +1,5 @@
 public class CardModel {
+    public static final String MODEL = "model";
     private final Rank rank;
     private final Suit suit;
 

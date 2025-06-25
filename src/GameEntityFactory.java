@@ -21,7 +21,7 @@ public class GameEntityFactory implements EntityFactory {
 
   @Spawns(SpawnKeys.CARD)
   public Entity newCard(SpawnData data) {
-    CardModel cardModel = data.get(CardModel.MODEL);
+    CardModel cardModel = data.get(SpawnDataKeys.MODEL);
     var card = new CardView(cardModel);
     return entityBuilder(data)
         .type(EntityType.CARD)

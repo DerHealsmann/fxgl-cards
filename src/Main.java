@@ -2,8 +2,10 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
-import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
+import java.util.Map;
+
+import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 public class Main extends GameApplication {
 
     private Entity card;
@@ -20,13 +22,12 @@ public class Main extends GameApplication {
         cardData.put(SpawnDataKeys.MODEL, new CardModel(CardModel.Rank.FOUR, CardModel.Suit.DIAMONDS));
 
         card = spawn(SpawnKeys.CARD, cardData);
+        spawn(SpawnKeys.CARD, cardData);
     }
 
     @Override
-    protected void initPhysics() {
-        // the order of entities is determined by
-        // the order of their types passed into this method
-
+    protected void initGameVars(Map<String, Object> vars) {
+        super.initGameVars(vars);
     }
 
     public static void main(String[] args) {

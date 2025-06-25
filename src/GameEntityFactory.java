@@ -5,6 +5,7 @@ import com.almasb.fxgl.entity.Spawns;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 public class GameEntityFactory implements EntityFactory {
@@ -26,6 +27,8 @@ public class GameEntityFactory implements EntityFactory {
     return entityBuilder(data)
         .type(EntityType.CARD)
         .with(new CardModelComponent(cardModel))
+        .with(new MouseDragBehaviour())
+        .with(new StackingTargetBehaviour())
         .view(card)
         .build();
   }

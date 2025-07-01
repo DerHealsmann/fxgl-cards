@@ -13,6 +13,7 @@ public class CardView extends StackPane {
   private final BooleanProperty isFaceUp = new SimpleBooleanProperty();
 
   public CardView(CardModel cardModel, boolean isCardFaceUp) {
+    //TODO: pass in CardComponent that handles isFaceUp? similar to DeckView with DeckComponent
     this.isFaceUp.set(isCardFaceUp);
     final var labelText = cardModel.toString();
     final var paint = cardModel.isRed() ? Color.RED : Color.BLACK;
@@ -20,6 +21,7 @@ public class CardView extends StackPane {
     final var bottomLabel = createCardLabel(labelText, paint, Pos.BOTTOM_RIGHT, 180d);
     topLabel.visibleProperty().bind(isFaceUp);
     bottomLabel.visibleProperty().bind(isFaceUp);
+
     getChildren().addAll(
         createCardBackground(),
         topLabel,

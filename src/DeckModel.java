@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class DeckModel {
@@ -28,14 +27,11 @@ public class DeckModel {
 
   public DeckModel() {
     fillDeck();
+    System.out.println(deck);
   }
 
-  public CardModel getTopCard() {
-    return deck.getFirst();
-  }
-
-  public void shuffle() {
-    Collections.shuffle(deck);
+  public List<CardModel> getCards() {
+    return deck;
   }
 
   private void fillDeck() {

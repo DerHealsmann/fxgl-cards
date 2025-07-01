@@ -17,3 +17,12 @@
 -[ ] write logic for simple AI opponents
 -[ ] create animations for AI moves
 -[ ] main menu (set up using scenes)
+
+
+## Notes:
+### Architecture
+- Model() -> defines what the thing is initially 
+- Component(Model) -> store the state of the thing 
+- View(Component) -> display the state of the thing
+
+ Create bindings between the properties in the component and the properties in the view to ensure the view stays in sync with the game state.

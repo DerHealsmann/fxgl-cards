@@ -20,10 +20,8 @@ public class Main extends GameApplication {
         cardData1.put(SpawnDataKeys.IS_FACE_UP, true);
         spawn(SpawnKeys.CARD, cardData1);
 
-        var cardData2 = new SpawnData(25d, 35d);
-        cardData2.put(SpawnDataKeys.MODEL, new CardModel(CardModel.Rank.JACK, CardModel.Suit.CLUBS));
-        cardData2.put(SpawnDataKeys.IS_FACE_UP, true);
-        spawn(SpawnKeys.CARD, cardData2);
+        var deckData = new SpawnData(30d, 40d);
+        spawn(SpawnKeys.DECK, deckData);
     }
 
     @Override

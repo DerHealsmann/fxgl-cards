@@ -23,7 +23,8 @@ public class GameEntityFactory implements EntityFactory {
   @Spawns(SpawnKeys.CARD)
   public Entity newCard(SpawnData data) {
     CardModel cardModel = data.get(SpawnDataKeys.MODEL);
-    var card = new CardView(cardModel);
+    boolean isFaceUp = data.get(SpawnDataKeys.IS_FACE_UP);
+    var card = new CardView(cardModel, isFaceUp);
     return entityBuilder(data)
         .type(EntityType.CARD)
         .with(new CardModelComponent(cardModel))

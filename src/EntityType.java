@@ -1,3 +1,4 @@
 public enum EntityType {
-  CARD
+  CARD,
+  DECK
 }

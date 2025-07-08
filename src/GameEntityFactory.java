@@ -5,7 +5,6 @@ import com.almasb.fxgl.entity.Spawns;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 public class GameEntityFactory implements EntityFactory {
@@ -23,13 +22,27 @@ public class GameEntityFactory implements EntityFactory {
   @Spawns(SpawnKeys.CARD)
   public Entity newCard(SpawnData data) {
     CardModel cardModel = data.get(SpawnDataKeys.MODEL);
-    var card = new CardView(cardModel);
+    boolean isFaceUp = data.get(SpawnDataKeys.IS_FACE_UP);
+    var component = new CardComponent(cardModel, isFaceUp);
+    var view = new CardView(component);
     return entityBuilder(data)
         .type(EntityType.CARD)
-        .with(new CardModelComponent(cardModel))
+        .with(component)
         .with(new MouseDragBehaviour())
         .with(new StackingTargetBehaviour())
-        .view(card)
+        .view(view)
+        .build();
+  }
+
+  @Spawns(SpawnKeys.DECK)
+  public Entity newDeck(SpawnData data) {
+    DeckModel deckModel = new DeckModel();
+    DeckComponent deckComponent = new DeckComponent(deckModel);
+    var deck = new DeckView(deckComponent);
+    return entityBuilder(data)
+        .type(EntityType.DECK)
+        .with(deckComponent)
+        .view(deck)
         .build();
   }
 }

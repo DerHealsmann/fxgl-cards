@@ -12,27 +12,28 @@ import javafx.scene.text.Text;
 public class CardView extends StackPane {
   private final BooleanProperty isFaceUp = new SimpleBooleanProperty();
 
-  public CardView(CardModel cardModel, boolean isCardFaceUp) {
-    //TODO: pass in CardComponent that handles isFaceUp? similar to DeckView with DeckComponent
-    this.isFaceUp.set(isCardFaceUp);
-    final var labelText = cardModel.toString();
-    final var paint = cardModel.isRed() ? Color.RED : Color.BLACK;
+  public CardView(CardComponent component) {
+    this.isFaceUp.bind(component.isFaceUpProperty());
+    getChildren().add(createCardBackground());
+    if (component.getCardModel() == null) {
+      return;
+    }
+    final var labelText = component.getCardModel().toString();
+    final var paint = component.getCardModel().isRed() ? Color.RED : Color.BLACK;
     final var topLabel = createCardLabel(labelText, paint, Pos.TOP_LEFT, 0d);
     final var bottomLabel = createCardLabel(labelText, paint, Pos.BOTTOM_RIGHT, 180d);
     topLabel.visibleProperty().bind(isFaceUp);
     bottomLabel.visibleProperty().bind(isFaceUp);
-
     getChildren().addAll(
-        createCardBackground(),
-        topLabel,
-        bottomLabel
+      topLabel,
+      bottomLabel
     );
   }
 
   private Node createCardBackground() {
     var cardBackground = new Rectangle(88, 112);
     cardBackground.fillProperty().bind(
-        Bindings.createObjectBinding(()-> isFaceUp.get() ? Color.GHOSTWHITE : Color.TOMATO, isFaceUp)
+        Bindings.createObjectBinding(() -> isFaceUp.get() ? Color.GHOSTWHITE : Color.TOMATO, isFaceUp)
     );
     return cardBackground;
   }

@@ -23,13 +23,14 @@ public class GameEntityFactory implements EntityFactory {
   public Entity newCard(SpawnData data) {
     CardModel cardModel = data.get(SpawnDataKeys.MODEL);
     boolean isFaceUp = data.get(SpawnDataKeys.IS_FACE_UP);
-    var card = new CardView(cardModel, isFaceUp);
+    var component = new CardComponent(cardModel, isFaceUp);
+    var view = new CardView(component);
     return entityBuilder(data)
         .type(EntityType.CARD)
-        .with(new CardModelComponent(cardModel))
+        .with(component)
         .with(new MouseDragBehaviour())
         .with(new StackingTargetBehaviour())
-        .view(card)
+        .view(view)
         .build();
   }
 

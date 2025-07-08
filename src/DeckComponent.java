@@ -20,7 +20,6 @@ public class DeckComponent extends Component {
   public void onAdded() {
     super.onAdded();
     getEntity().getViewComponent().addOnClickHandler(e -> {
-      System.out.println("click deck");
       spawnCard(deck.removeFirst());
     });
   }

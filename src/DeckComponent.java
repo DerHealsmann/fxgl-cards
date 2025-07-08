@@ -1,16 +1,28 @@
+import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.component.Component;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
-
 import java.util.Collections;
 
+import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
+
 public class DeckComponent extends Component {
-  private SimpleListProperty<CardModel> deck;
+  private final SimpleListProperty<CardModel> deck;
+  private boolean spawnCardsFaceUp;
 
   public DeckComponent (DeckModel deckModel) {
     this.deck = new SimpleListProperty<>(FXCollections.observableList(deckModel.getCards()));
+    this.spawnCardsFaceUp = deckModel.isSpawnCardsFaceUp();
+  }
+
+  @Override
+  public void onAdded() {
+    super.onAdded();
+    getEntity().getViewComponent().addOnClickHandler(e -> {
+      System.out.println("click deck");
+      spawnCard(deck.removeFirst());
+    });
   }
 
   public CardModel getTopCard() {
@@ -27,6 +39,13 @@ public class DeckComponent extends Component {
 
   public ReadOnlyBooleanProperty isEmptyProperty() {
     return deck.emptyProperty();
+  }
+
+  private void spawnCard(CardModel card) {
+    var cardData = new SpawnData(getAppWidth() / 2d, getAppHeight() / 2d);
+    cardData.put(SpawnDataKeys.MODEL, card);
+    cardData.put(SpawnDataKeys.IS_FACE_UP, spawnCardsFaceUp);
+    spawn(SpawnKeys.CARD, cardData);
   }
 
 }

@@ -15,11 +15,6 @@ public class Main extends GameApplication {
         getGameWorld().addEntityFactory(new GameEntityFactory());
         spawn(SpawnKeys.BACKGROUND);
 
-        var cardData1 = new SpawnData(getAppWidth() / 2d, getAppHeight() / 2d);
-        cardData1.put(SpawnDataKeys.MODEL, new CardModel(CardModel.Rank.FOUR, CardModel.Suit.DIAMONDS));
-        cardData1.put(SpawnDataKeys.IS_FACE_UP, true);
-        spawn(SpawnKeys.CARD, cardData1);
-
         var deckData = new SpawnData(30d, 40d);
         spawn(SpawnKeys.DECK, deckData);
     }

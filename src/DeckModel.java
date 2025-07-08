@@ -24,6 +24,7 @@ public class DeckModel {
       CardModel.Suit.SPADES,
       CardModel.Suit.CLUBS
   );
+  private final boolean spawnCardsFaceUp = true;
 
   public DeckModel() {
     fillDeck();
@@ -42,5 +43,9 @@ public class DeckModel {
         deck.add(newCard);
       }
     }
+  }
+
+  public boolean isSpawnCardsFaceUp() {
+    return spawnCardsFaceUp;
   }
 }

@@ -4,7 +4,7 @@
 -[x] design game mechanics, what interactions are needed?
 -[x] create view to display a card
 -[ ] create view to display a hand
--[ ] write spawn logic to add a whole deck
+-[x] write spawn logic to add a whole deck
 -[x] write model for cards
 -[x] write logic for click and drag
 -[ ] write logic for players having hands

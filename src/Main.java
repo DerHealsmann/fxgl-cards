@@ -17,6 +17,9 @@ public class Main extends GameApplication {
 
         var deckData = new SpawnData(30d, 40d);
         spawn(SpawnKeys.DECK, deckData);
+
+        var handData = new SpawnData(50d, 380d);
+        spawn(SpawnKeys.HAND, handData);
     }
 
     @Override

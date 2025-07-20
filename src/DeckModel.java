@@ -28,7 +28,6 @@ public class DeckModel {
 
   public DeckModel() {
     fillDeck();
-    System.out.println(deck);
   }
 
   public List<CardModel> getCards() {

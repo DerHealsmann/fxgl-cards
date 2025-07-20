@@ -18,7 +18,10 @@ public class Main extends GameApplication {
         var deckData = new SpawnData(30d, 40d);
         spawn(SpawnKeys.DECK, deckData);
 
-        var handData = new SpawnData(50d, 380d);
+        var handData = new SpawnData(
+            (getAppWidth() / 2d) - (HandComponent.REGION_WIDTH / 2d),
+            (getAppHeight() * 0.8d) - (HandComponent.REGION_HEIGHT / 2d)
+        );
         spawn(SpawnKeys.HAND, handData);
     }
 

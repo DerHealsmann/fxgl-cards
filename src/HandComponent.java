@@ -1,26 +1,14 @@
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.component.Component;
-import javafx.geometry.Point2D;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
-
 public class HandComponent extends Component {
-  private final int regionWidth = 350;
-  private final int regionHeight = 175;
-  private List<Entity> cards = new ArrayList<>();
-  private final int CARD_SPACING = 28;
-
-  public HandComponent() {
-    cards.addAll(List.of(
-        spawnCard(new CardModel(CardModel.Rank.ACE, CardModel.Suit.CLUBS)),
-        spawnCard(new CardModel(CardModel.Rank.KING, CardModel.Suit.DIAMONDS)),
-        spawnCard(new CardModel(CardModel.Rank.THREE, CardModel.Suit.HEARTS)))
-    );
-  }
+  public static final int REGION_WIDTH = 350;
+  public static final int REGION_HEIGHT = 175;
+  private final List<Entity> cards = new ArrayList<>();
+  private static final int CARD_SPACING = 28;
 
   @Override
   public void onAdded() {
@@ -28,29 +16,32 @@ public class HandComponent extends Component {
     layoutCards();
   }
 
-  private Entity spawnCard(CardModel card) {
-    var cardData = new SpawnData(getAppWidth() / 2d, getAppHeight() / 2d);
-    cardData.put(SpawnDataKeys.MODEL, card);
-    cardData.put(SpawnDataKeys.IS_FACE_UP, true);
-    return spawn(SpawnKeys.CARD, cardData);
-  }
-
   private void layoutCards() {
-    var handPos = getEntity().getPosition().add(regionWidth / 2d, regionHeight / 2d);
+    if (cards.isEmpty()) {
+      return;
+    }
+    var handPos = getEntity().getPosition();
     for (int i = 0; i < cards.size(); i++) {
       var currentCard = cards.get(i);
-      var cardPos = handPos.subtract(CardView.CARD_WIDTH / 2d, CardView.CARD_HEIGHT / 2d);
+      var cardPos = handPos;
       currentCard.setPosition(cardPos.getX() + i * CARD_SPACING, cardPos.getY());
       currentCard.setZIndex(40 + i);
     }
+    // TODO: use getRightX() instead (when it works)
+    //       also assumes only left-right layouts;
+    var firstCardX = cards.getFirst().getX();
+    var lastCardX = cards.getLast().getX() + CardView.CARD_WIDTH;
+    var handWidth = lastCardX - firstCardX;
+    var handHeight = CardView.CARD_HEIGHT;
+
+    for (Entity currentCard : cards) {
+      currentCard.translateX((REGION_WIDTH / 2d) - (handWidth / 2d));
+      currentCard.translateY((REGION_HEIGHT / 2d) - (handHeight / 2d));
+    }
   }
 
-  public int getRegionHeight() {
-    return regionHeight;
+  public void addCard(Entity card) {
+    cards.add(card);
+    layoutCards();
   }
-
-  public int getRegionWidth() {
-    return regionWidth;
-  }
-
 }

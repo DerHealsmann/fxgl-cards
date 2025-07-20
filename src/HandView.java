@@ -1,11 +1,10 @@
-import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
 public class HandView extends StackPane {
   public HandView(HandComponent handComponent) {
-    createHandRegion(handComponent.getRegionWidth(), handComponent.getRegionHeight());
+    createHandRegion(HandComponent.REGION_WIDTH, HandComponent.REGION_HEIGHT);
   }
   private void createHandRegion(int width, int height) {
     var region = new Rectangle(width, height);

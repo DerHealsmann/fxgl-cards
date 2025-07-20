@@ -1,3 +1,5 @@
+import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.component.Component;
 import javafx.beans.property.ReadOnlyBooleanProperty;
@@ -19,8 +21,11 @@ public class DeckComponent extends Component {
   @Override
   public void onAdded() {
     super.onAdded();
+    shuffle();
     getEntity().getViewComponent().addOnClickHandler(e -> {
-      spawnCard(deck.removeFirst());
+      var newCard = spawnCard(deck.removeFirst());
+      var handComponent = FXGL.getGameWorld().getEntitiesByComponent(HandComponent.class).getFirst().getComponent(HandComponent.class);
+      handComponent.addCard(newCard);
     });
   }
 
@@ -40,11 +45,11 @@ public class DeckComponent extends Component {
     return deck.emptyProperty();
   }
 
-  private void spawnCard(CardModel card) {
+  private Entity spawnCard(CardModel card) {
     var cardData = new SpawnData(getAppWidth() / 2d, getAppHeight() / 2d);
     cardData.put(SpawnDataKeys.MODEL, card);
     cardData.put(SpawnDataKeys.IS_FACE_UP, spawnCardsFaceUp);
-    spawn(SpawnKeys.CARD, cardData);
+    return spawn(SpawnKeys.CARD, cardData);
   }
 
 }

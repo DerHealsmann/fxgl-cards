@@ -36,13 +36,23 @@ public class GameEntityFactory implements EntityFactory {
 
   @Spawns(SpawnKeys.DECK)
   public Entity newDeck(SpawnData data) {
-    DeckModel deckModel = new DeckModel();
-    DeckComponent deckComponent = new DeckComponent(deckModel);
+    var deckModel = new DeckModel();
+    var deckComponent = new DeckComponent(deckModel);
     var deck = new DeckView(deckComponent);
     return entityBuilder(data)
         .type(EntityType.DECK)
         .with(deckComponent)
         .view(deck)
+        .build();
+  }
+
+  @Spawns(SpawnKeys.HAND)
+  public Entity newHand(SpawnData data) {
+    var handComponent = new HandComponent();
+    var hand = new HandView(handComponent);
+    return entityBuilder(data)
+        .with(handComponent)
+        .viewWithBBox(hand)
         .build();
   }
 }

@@ -16,13 +16,15 @@ public class HandComponent extends Component {
     layoutCards();
   }
 
-  private void layoutCards() {
+  public void layoutCards() {
     if (cards.isEmpty()) {
       return;
     }
+
     var handPos = getEntity().getPosition();
     for (int i = 0; i < cards.size(); i++) {
       var currentCard = cards.get(i);
+      
       var cardPos = handPos;
       currentCard.setPosition(cardPos.getX() + i * CARD_SPACING, cardPos.getY());
       currentCard.setZIndex(40 + i);
@@ -43,5 +45,14 @@ public class HandComponent extends Component {
   public void addCard(Entity card) {
     cards.add(card);
     layoutCards();
+  }
+
+  public void removeCard(Entity card) {
+    cards.remove(card);
+    layoutCards();
+  }
+
+  public List<Entity> getCards() {
+    return cards;
   }
 }

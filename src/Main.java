@@ -23,6 +23,8 @@ public class Main extends GameApplication {
             (getAppHeight() * 0.8d) - (HandComponent.REGION_HEIGHT / 2d)
         );
         spawn(SpawnKeys.HAND, handData);
+
+        spawn(SpawnKeys.TEST_REGION, new SpawnData(175d, 175d));
     }
 
     @Override

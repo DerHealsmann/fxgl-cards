@@ -1,6 +1,7 @@
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
 import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Makes this entity draggable with the mouse
@@ -28,6 +29,10 @@ public class MouseDragBehaviour extends Component {
     }
   }
 
+  protected void onMouseReleased(MouseEvent e) {
+
+  }
+
   private void setupMouseDragListeners() {
     viewRoot.setOnMousePressed(e -> {
       // store mouse position relative to object
@@ -35,8 +40,6 @@ public class MouseDragBehaviour extends Component {
       dragStartMouseYRelative = e.getSceneY() - entity.getY();
       // required so that card is not a target during its own mouse events
       viewRoot.setMouseTransparent(true);
-      // bring to fore
-      entity.setZIndex(100);
     });
 
     viewRoot.setOnMouseDragged(e -> {
@@ -47,7 +50,7 @@ public class MouseDragBehaviour extends Component {
     viewRoot.setOnMouseReleased(e -> {
       // required so that card is not a target during its own mouse events
       viewRoot.setMouseTransparent(false);
-      entity.setZIndex(0);
+      onMouseReleased(e);
     });
 
     // begin full drag event
@@ -56,6 +59,5 @@ public class MouseDragBehaviour extends Component {
       viewRoot.startFullDrag();
       FXGL.getWorldProperties().setValue(VarKeys.DRAGGED_ENTITY, entity);
     });
-
   }
 }

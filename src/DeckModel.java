@@ -25,10 +25,10 @@ public class DeckModel {
       CardModel.Suit.CLUBS
   );
   private final boolean spawnCardsFaceUp = true;
+  private final boolean spawnCardsInHand = true;
 
   public DeckModel() {
     fillDeck();
-    System.out.println(deck);
   }
 
   public List<CardModel> getCards() {
@@ -47,5 +47,9 @@ public class DeckModel {
 
   public boolean isSpawnCardsFaceUp() {
     return spawnCardsFaceUp;
+  }
+
+  public boolean isSpawnCardsInHand() {
+    return spawnCardsInHand;
   }
 }

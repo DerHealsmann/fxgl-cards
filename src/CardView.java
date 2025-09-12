@@ -12,6 +12,9 @@ import javafx.scene.text.Text;
 public class CardView extends StackPane {
   private final BooleanProperty isFaceUp = new SimpleBooleanProperty();
 
+  public static final int CARD_WIDTH = 88;
+  public static final int CARD_HEIGHT = 112;
+
   public CardView(CardComponent component) {
     this.isFaceUp.bind(component.isFaceUpProperty());
     getChildren().add(createCardBackground());
@@ -31,7 +34,7 @@ public class CardView extends StackPane {
   }
 
   private Node createCardBackground() {
-    var cardBackground = new Rectangle(88, 112);
+    var cardBackground = new Rectangle(CARD_WIDTH, CARD_HEIGHT);
     cardBackground.fillProperty().bind(
         Bindings.createObjectBinding(() -> isFaceUp.get() ? Color.GHOSTWHITE : Color.TOMATO, isFaceUp)
     );

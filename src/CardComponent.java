@@ -11,10 +11,6 @@ public class CardComponent extends Component {
     this.isFaceUp.set(isFaceUp);
   }
 
-  public CardComponent(boolean isFaceUp) {
-    this(null, isFaceUp);
-  }
-
   public BooleanProperty isFaceUpProperty() {
     return isFaceUp;
   }

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class CardModel {
     private final Rank rank;
     private final Suit suit;
@@ -62,4 +64,20 @@ public class CardModel {
     public String toString() {
         return rank.toString() + " " + suit.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        CardModel cardModel = (CardModel) o;
+        return rank == cardModel.rank && suit == cardModel.suit;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rank, suit);
+    }
+
+    public Rank getRank() { return rank; }
+
+    public Suit getSuit() { return suit; }
 }

@@ -24,8 +24,8 @@ public class DeckComponent extends Component {
     shuffle();
     getEntity().getViewComponent().addOnClickHandler(e -> {
       var newCard = spawnCard(deck.removeFirst());
-      var handComponent = FXGL.getGameWorld().getEntitiesByComponent(HandComponent.class).getFirst().getComponent(HandComponent.class);
-      handComponent.addCard(newCard);
+      var cardContainer = FXGL.getGameWorld().getEntitiesByType(EntityType.HAND).getFirst().getComponent(CardContainerComponent.class);
+      cardContainer.addCard(newCard);
     });
   }
 

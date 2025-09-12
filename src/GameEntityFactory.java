@@ -25,11 +25,11 @@ public class GameEntityFactory implements EntityFactory {
   public Entity newTestRegion(SpawnData data) {
     var test = new Rectangle(125, 125);
     test.setFill(Color.HONEYDEW);
-    var testRegionBehaviour = new RegionMouseDragTargetBehaviour();
-    var regionContainer = new CardContainerComponent();
+    var testRegionBehaviour = new CardContainerMouseDragTargetBehaviour();
+    var cardContainer = new CardContainerComponent(125, 125, AlignmentMode.TOP_LEFT);
     return entityBuilder(data)
         .view(test)
-        .with(regionContainer)
+        .with(cardContainer)
         .with(new MouseDragTargetManager())
         .with(testRegionBehaviour)
         .build();
@@ -64,12 +64,14 @@ public class GameEntityFactory implements EntityFactory {
 
   @Spawns(SpawnKeys.HAND)
   public Entity newHand(SpawnData data) {
-    var handComponent = new HandComponent();
-    var hand = new HandView(handComponent);
+    int regionWidth = 350;
+    int regionHeight = 175;
+    var view = new HandView(regionWidth, regionHeight);
+    var cardContainer = new CardContainerComponent(regionWidth, regionHeight, AlignmentMode.CENTER);
     return entityBuilder(data)
         .type(EntityType.HAND)
-        .with(handComponent)
-        .viewWithBBox(hand)
+        .with(cardContainer)
+        .viewWithBBox(view)
         .build();
   }
 }

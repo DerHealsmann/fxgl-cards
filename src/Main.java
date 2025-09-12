@@ -18,9 +18,10 @@ public class Main extends GameApplication {
         var deckData = new SpawnData(30d, 40d);
         spawn(SpawnKeys.DECK, deckData);
 
+        // todo: don't hardcode this in such a dumb way
         var handData = new SpawnData(
-            (getAppWidth() / 2d) - (HandComponent.REGION_WIDTH / 2d),
-            (getAppHeight() * 0.8d) - (HandComponent.REGION_HEIGHT / 2d)
+            (getAppWidth() / 2d) - 175,
+            (getAppHeight() * 0.8d - 88)
         );
         spawn(SpawnKeys.HAND, handData);
 

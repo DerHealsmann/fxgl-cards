@@ -7,7 +7,5 @@ public class TableMouseDragTargetBehaviour extends MouseDragTargetBehaviour {
   public void onDragReleased(Entity draggedEntity) {
     System.out.println("dragged onto table");
     draggedEntity.addComponent(IsOnTheTable.getInstance());
-
-
   }
 }

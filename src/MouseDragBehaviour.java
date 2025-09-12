@@ -40,8 +40,6 @@ public class MouseDragBehaviour extends Component {
       dragStartMouseYRelative = e.getSceneY() - entity.getY();
       // required so that card is not a target during its own mouse events
       viewRoot.setMouseTransparent(true);
-      // bring to fore
-      entity.setZIndex(100);
     });
 
     viewRoot.setOnMouseDragged(e -> {
@@ -52,7 +50,6 @@ public class MouseDragBehaviour extends Component {
     viewRoot.setOnMouseReleased(e -> {
       // required so that card is not a target during its own mouse events
       viewRoot.setMouseTransparent(false);
-      entity.setZIndex(0);
       onMouseReleased(e);
     });
 

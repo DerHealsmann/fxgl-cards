@@ -26,8 +26,10 @@ public class GameEntityFactory implements EntityFactory {
     var test = new Rectangle(125, 125);
     test.setFill(Color.HONEYDEW);
     var testRegionBehaviour = new RegionMouseDragTargetBehaviour();
+    var regionContainer = new CardContainerComponent();
     return entityBuilder(data)
         .view(test)
+        .with(regionContainer)
         .with(new MouseDragTargetManager())
         .with(testRegionBehaviour)
         .build();
@@ -44,7 +46,6 @@ public class GameEntityFactory implements EntityFactory {
         .with(component)
         .with(new MouseDragTargetManager())
         .with(new CardMouseDragBehaviour())
-        .with(new StackingTargetBehaviour())
         .view(view)
         .build();
   }

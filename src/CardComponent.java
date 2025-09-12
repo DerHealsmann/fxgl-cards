@@ -5,12 +5,10 @@ import javafx.beans.property.SimpleBooleanProperty;
 public class CardComponent extends Component {
   private final CardModel cardModel;
   private final BooleanProperty isFaceUp = new SimpleBooleanProperty();
-  //private BooleanProperty inHand = new SimpleBooleanProperty();
 
   public CardComponent(CardModel cardModel, boolean isFaceUp) {
     this.cardModel = cardModel;
     this.isFaceUp.set(isFaceUp);
-    //this.inHand.set(inHand);
   }
 
   public BooleanProperty isFaceUpProperty() {

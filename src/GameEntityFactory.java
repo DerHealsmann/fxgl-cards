@@ -25,13 +25,12 @@ public class GameEntityFactory implements EntityFactory {
   public Entity newTestRegion(SpawnData data) {
     var test = new Rectangle(125, 125);
     test.setFill(Color.HONEYDEW);
-    var testRegionBehaviour = new CardContainerMouseDragTargetBehaviour();
     var cardContainer = new CardContainerComponent(125, 125, AlignmentMode.TOP_LEFT);
     return entityBuilder(data)
         .view(test)
         .with(cardContainer)
         .with(new MouseDragTargetManager())
-        .with(testRegionBehaviour)
+        .with(new CardContainerMouseDragTargetBehaviour())
         .build();
   }
 

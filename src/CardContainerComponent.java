@@ -49,12 +49,10 @@ public class CardContainerComponent extends Component {
   }
 
   private void centreAlignCards() {
-    // TODO: use getRightX() instead (when it works)
-    //       also assumes only left-right layouts;
     var firstCardX = cards.getFirst().getX();
-    var lastCardX = cards.getLast().getX() + CardView.CARD_WIDTH;
+    var lastCardX = cards.getLast().getRightX();
     var allCardsWidth = lastCardX - firstCardX;
-    var allCardsHeight = CardView.CARD_HEIGHT;
+    var allCardsHeight = cards.getFirst().getHeight();
 
     for (Entity currentCard : cards) {
       currentCard.translateX((REGION_WIDTH / 2d) - (allCardsWidth / 2d));

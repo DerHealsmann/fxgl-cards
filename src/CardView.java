@@ -12,8 +12,8 @@ import javafx.scene.text.Text;
 public class CardView extends StackPane {
   private final BooleanProperty isFaceUp = new SimpleBooleanProperty();
 
-  public static final int CARD_WIDTH = 88;
-  public static final int CARD_HEIGHT = 112;
+  private static final int CARD_WIDTH = 88;
+  private static final int CARD_HEIGHT = 112;
 
   public CardView(CardComponent component) {
     this.isFaceUp.bind(component.isFaceUpProperty());
@@ -48,5 +48,13 @@ public class CardView extends StackPane {
     StackPane.setMargin(label, new Insets(10));
     label.setRotate(rotation);
     return label;
+  }
+
+  public int getCardWidth() {
+    return CARD_WIDTH;
+  }
+
+  public int getCardHeight() {
+    return CARD_HEIGHT;
   }
 }

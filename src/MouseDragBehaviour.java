@@ -60,5 +60,6 @@ public class MouseDragBehaviour extends Component {
       viewRoot.startFullDrag();
       FXGL.getWorldProperties().setValue(VarKeys.DRAGGED_ENTITY, entity);
     });
+
   }
 }

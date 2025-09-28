@@ -15,6 +15,7 @@ public class GameEntityFactory implements EntityFactory {
   public Entity newBackground(SpawnData data) {
     var background = new Rectangle(getAppWidth(), getAppHeight());
     background.setFill(Color.BLANCHEDALMOND);
+
     return entityBuilder(data)
         .view(background)
         .with(new MouseDragTargetManager())
@@ -73,6 +74,7 @@ public class GameEntityFactory implements EntityFactory {
     return entityBuilder(data)
         .type(EntityType.HAND)
         .with(cardContainer)
+        .with(new MouseDragTargetManager())
         .with(handRegionBehaviour)
         .viewWithBBox(view)
         .build();

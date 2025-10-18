@@ -62,7 +62,7 @@ public class CardModel {
 
     @Override
     public String toString() {
-        return rank.toString() + " " + suit.toString();
+        return rank.toString() + "\n" + suit.toString();
     }
 
     @Override

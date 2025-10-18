@@ -2,6 +2,8 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
+import com.almasb.fxgl.physics.BoundingShape;
+import com.almasb.fxgl.physics.HitBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -13,11 +15,10 @@ public class GameEntityFactory implements EntityFactory {
   public Entity newBackground(SpawnData data) {
     var background = new Rectangle(getAppWidth(), getAppHeight());
     background.setFill(Color.BLANCHEDALMOND);
-    var tableTargetBehaviour = new TableMouseDragTargetBehaviour();
+
     return entityBuilder(data)
         .view(background)
         .with(new MouseDragTargetManager())
-        .with(tableTargetBehaviour)
         .build();
   }
 
@@ -25,12 +26,13 @@ public class GameEntityFactory implements EntityFactory {
   public Entity newTestRegion(SpawnData data) {
     var test = new Rectangle(125, 125);
     test.setFill(Color.HONEYDEW);
+    var testRegionBehaviour = new CardContainerMouseDragTargetBehaviour();
     var cardContainer = new CardContainerComponent(125, 125, AlignmentMode.TOP_LEFT);
     return entityBuilder(data)
         .view(test)
         .with(cardContainer)
         .with(new MouseDragTargetManager())
-        .with(new CardContainerMouseDragTargetBehaviour())
+        .with(testRegionBehaviour)
         .build();
   }
 
@@ -46,6 +48,7 @@ public class GameEntityFactory implements EntityFactory {
         .with(new MouseDragTargetManager())
         .with(new CardMouseDragBehaviour())
         .view(view)
+        .bbox(new HitBox("card", BoundingShape.box(view.getCardWidth(), view.getCardHeight())))
         .build();
   }
 
@@ -67,9 +70,12 @@ public class GameEntityFactory implements EntityFactory {
     int regionHeight = 175;
     var view = new HandView(regionWidth, regionHeight);
     var cardContainer = new CardContainerComponent(regionWidth, regionHeight, AlignmentMode.CENTER);
+    var handRegionBehaviour = new CardContainerMouseDragTargetBehaviour();
     return entityBuilder(data)
         .type(EntityType.HAND)
         .with(cardContainer)
+        .with(new MouseDragTargetManager())
+        .with(handRegionBehaviour)
         .viewWithBBox(view)
         .build();
   }

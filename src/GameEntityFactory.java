@@ -48,7 +48,7 @@ public class GameEntityFactory implements EntityFactory {
         .with(new MouseDragTargetManager())
         .with(new CardMouseDragBehaviour())
         .view(view)
-        .bbox(new HitBox("card", BoundingShape.box(view.getCardWidth(), view.getCardHeight())))
+        .bbox(new HitBox("card", BoundingShape.box(CardView.CARD_WIDTH, CardView.CARD_HEIGHT)))
         .build();
   }
 

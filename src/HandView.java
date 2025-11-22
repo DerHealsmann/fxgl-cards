@@ -7,12 +7,7 @@ public class HandView extends StackPane {
     createHandRegion(width, height);
   }
   private void createHandRegion(int width, int height) {
-    var region = new Rectangle(width, height);
-    region.setFill(Color.CORAL);
-    region.setOpacity(0.5);
-    getChildren().add(region);
-
-    var hand = new Rectangle(width - 90, height - 25);
+    var hand = new Rectangle(width, height);
     hand.setFill(Color.DODGERBLUE);
     hand.setOpacity(0.5);
     getChildren().add(hand);

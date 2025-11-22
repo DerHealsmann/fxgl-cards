@@ -50,7 +50,6 @@ public class CardView extends StackPane {
   }
 
   private Node createCardLabel(String cardText, Color color, Pos position, double rotation) {
-    //TODO: sort alignment of rank/suit? margins?
     var label = new Text(cardText);
     label.setFill(color);
     StackPane.setAlignment(label, position);

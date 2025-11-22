@@ -25,7 +25,6 @@ public class CardContainerMouseDragTargetBehaviour extends MouseDragTargetBehavi
     var destinationContainer = region.getComponentOptional(CardContainerComponent.class);
 
     if (sourceContainer.isPresent() && destinationContainer.isPresent() && sourceContainer.get() != destinationContainer.get()) {
-      System.out.println("dragged into the honeydew");
       sourceContainer.get().removeCard(draggedEntity);
       destinationContainer.get().addCard(draggedEntity);
 

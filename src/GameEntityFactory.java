@@ -10,6 +10,7 @@ import javafx.scene.shape.Rectangle;
 import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
 
 public class GameEntityFactory implements EntityFactory {
+  private static final boolean FACE_UP = true;
 
   @Spawns(SpawnKeys.BACKGROUND)
   public Entity newBackground(SpawnData data) {
@@ -27,7 +28,7 @@ public class GameEntityFactory implements EntityFactory {
     var test = new Rectangle(125, 125);
     test.setFill(Color.HONEYDEW);
     var testRegionBehaviour = new CardContainerMouseDragTargetBehaviour();
-    var cardContainer = new CardContainerComponent(125, 125, AlignmentMode.TOP_LEFT);
+    var cardContainer = new CardContainerComponent(125, 125, AlignmentMode.TOP_LEFT, FACE_UP);
     return entityBuilder(data)
         .view(test)
         .with(cardContainer)
@@ -69,7 +70,7 @@ public class GameEntityFactory implements EntityFactory {
     int regionWidth = 350;
     int regionHeight = 175;
     var view = new HandView(regionWidth, regionHeight);
-    var cardContainer = new CardContainerComponent(regionWidth, regionHeight, AlignmentMode.CENTER);
+    var cardContainer = new CardContainerComponent(regionWidth, regionHeight, AlignmentMode.CENTER, data.get(SpawnDataKeys.IS_FACE_UP));
     var handRegionBehaviour = new CardContainerMouseDragTargetBehaviour();
     return entityBuilder(data)
         .type(EntityType.HAND)

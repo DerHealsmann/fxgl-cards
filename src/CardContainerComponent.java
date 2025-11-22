@@ -11,11 +11,13 @@ public class CardContainerComponent extends Component {
   private final int REGION_WIDTH;
   private final int REGION_HEIGHT;
   private final AlignmentMode ALIGNMENT;
+  private final boolean areCardsFaceUp;
 
-  CardContainerComponent(int width, int height, AlignmentMode alignment) {
+  CardContainerComponent(int width, int height, AlignmentMode alignment, boolean areCardsFaceUp) {
     REGION_WIDTH = width;
     REGION_HEIGHT = height;
     ALIGNMENT = alignment;
+    this.areCardsFaceUp = areCardsFaceUp;
   }
 
   @Override
@@ -61,6 +63,9 @@ public class CardContainerComponent extends Component {
   }
 
   public void addCard(Entity card) {
+    card.getComponentOptional(CardComponent.class).ifPresent(component -> {
+      component.isFaceUpProperty().set(areCardsFaceUp);
+    });
     cards.add(card);
     layoutCards();
     System.out.println(cards.size());

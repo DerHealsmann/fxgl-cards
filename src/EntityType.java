@@ -1,5 +1,6 @@
 public enum EntityType {
   CARD,
   DECK,
-  HAND
+  HAND,
+  CARD_CONTAINER
 }

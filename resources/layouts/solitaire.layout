@@ -1,0 +1,7 @@
+3, 0 = DECK();
+4, 0 = CARD_CONTAINER(draggable = false);
+6, 0 = CARD_CONTAINER(
+	draggable = false,
+	stacking = INPLACE
+);
+9, 2 = CARD_CONTAINER(stacking = VERTICAL);

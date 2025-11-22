@@ -17,6 +17,10 @@ public class Main extends GameApplication {
 
     @Override
     protected void initGame() {
+
+      final var layout = new LayoutParser("solitaire").parseLayout();
+      System.out.println(layout);
+
         getGameWorld().addEntityFactory(new GameEntityFactory());
         spawn(SpawnKeys.BACKGROUND);
 
